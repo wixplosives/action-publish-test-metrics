@@ -11,3 +11,6 @@ inputs:
   actionLink: 
     required: true
     description: 'link toi action that executed the tests'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
