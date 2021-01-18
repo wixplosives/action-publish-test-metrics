@@ -79,7 +79,7 @@ async function sendTestResults(filePath: string, repo :string, commitSha: string
                     errMessage = entry.err.message;
                     failed = true;                   
                 } 
-                const newMetric = new TestResultMetric(entry.title, failed,  entry.currentRetry,errStack,errMessage,errName,entry.duration,repo,commitSha,'macos', 'somelink') 
+                const newMetric = new TestResultMetric(entry.title, failed,  entry.currentRetry,errStack,errMessage,errName,entry.duration,repo,commitSha,'undefined', actionLink) 
                 await sendToFrog(newMetric)
                 numOfMetrics++
             }
