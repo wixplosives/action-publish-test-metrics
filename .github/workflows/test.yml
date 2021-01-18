@@ -21,4 +21,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          milliseconds: 1000
+          testReportFile: '__tests__/fixtures/mocha-report.json'
+          actionLink: 'dummy/link'

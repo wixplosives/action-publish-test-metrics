@@ -1,11 +1,13 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Send test results to wix bi'
+description: 'Custom action used to send test reports for analyses '
+author: 'core3'
+branding:
+  icon: 'crosshair'
+  color: 'blue'
 inputs:
-  milliseconds: # change this
+  testReportFile: 
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
-runs:
-  using: 'node12'
-  main: 'dist/index.js'
+    description: 'input file in json format. mocha json repoter results'
+  actionLink: 
+    required: true
+    description: 'link toi action that executed the tests'

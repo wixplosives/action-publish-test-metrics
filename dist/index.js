@@ -1,11 +1,94 @@
 require('./sourcemap-register.js');module.exports =
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ 270:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __asyncValues = (this && this.__asyncValues) || function (o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.FetchError = exports.isSecureUrl = exports.readTextFromStream = exports.fetchText = void 0;
+const http_1 = __importDefault(__webpack_require__(605));
+const https_1 = __importDefault(__webpack_require__(211));
+const events_1 = __webpack_require__(614);
+const url_1 = __webpack_require__(835);
+function fetchText(url, options = {}) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const request = isSecureUrl(url) ? https_1.default.get(url, options) : http_1.default.get(url, options);
+        const [response] = (yield events_1.once(request, 'response'));
+        const { statusCode } = response;
+        if (statusCode !== 200) {
+            response.resume();
+            throw new FetchError(`HTTP ${String(statusCode)}: failed fetching ${url.toString()}`, statusCode);
+        }
+        return readTextFromStream(response);
+    });
+}
+exports.fetchText = fetchText;
+function readTextFromStream(readable, encoding = 'utf8') {
+    var readable_1, readable_1_1;
+    var e_1, _a;
+    return __awaiter(this, void 0, void 0, function* () {
+        let text = '';
+        readable.setEncoding(encoding);
+        try {
+            for (readable_1 = __asyncValues(readable); readable_1_1 = yield readable_1.next(), !readable_1_1.done;) {
+                const chunk = readable_1_1.value;
+                text += chunk;
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (readable_1_1 && !readable_1_1.done && (_a = readable_1.return)) yield _a.call(readable_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return text;
+    });
+}
+exports.readTextFromStream = readTextFromStream;
+function isSecureUrl(url) {
+    return url instanceof url_1.URL ? url.protocol === 'https' : url.startsWith('https://');
+}
+exports.isSecureUrl = isSecureUrl;
+class FetchError extends Error {
+    constructor(message, statusCode) {
+        super(message);
+        this.statusCode = statusCode;
+        // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html#support-for-newtarget
+        Object.setPrototypeOf(this, new.target.prototype);
+    }
+}
+exports.FetchError = FetchError;
+
+
+/***/ }),
 
 /***/ 109:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -35,18 +118,87 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(186));
-const wait_1 = __webpack_require__(817);
+const fs_1 = __importDefault(__webpack_require__(747));
+const http_1 = __webpack_require__(270);
+const github = __webpack_require__(716);
+class TestResultMetric {
+    constructor(name, failed, currentRetry, errStack, errMessage, errName, duration, repo, commit, os, actionLink) {
+        const adjustedName = name.replace(' ', '-');
+        this.name = `${adjustedName}`;
+        this.failed = failed;
+        this.currentRetry = currentRetry;
+        this.errStack = errStack;
+        this.errMessage = errMessage;
+        this.errName = errName;
+        this.duration = duration;
+        this.repo = repo;
+        this.commit = commit;
+        this.os = os;
+        this.actionLink = actionLink;
+    }
+}
+function fileExists(filePath) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            return (yield fs_1.default.promises.stat(filePath)).isFile();
+        }
+        catch (_a) {
+            return false;
+        }
+    });
+}
+function sendToFrog(testMetric) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const url = `http://frog.wix.com/c3ci?src=129&evid=1&actionLink=${testMetric.actionLink}&commit=${testMetric.commit}&currentRetry=${testMetric.currentRetry}&duration=${testMetric.duration}&errMessage=${testMetric.errMessage}&errName=${testMetric.errName}&errStack=${testMetric.errStack}&failed=${testMetric.failed}&os==${testMetric.os}&repo=${testMetric.repo}&testName=${testMetric.name}`;
+        const encodedUrl = encodeURI(url);
+        const result = yield http_1.fetchText(encodedUrl, {
+            method: 'GET'
+        });
+    });
+}
+function sendTestResults(filePath, repo, commitSha, actionLink) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const fileContent = (yield fileExists(filePath)) ? yield fs_1.default.promises.readFile(filePath, 'utf8') : undefined;
+        const testMetricList = [];
+        let numOfMetrics = 0;
+        if (fileContent) {
+            const rawEventData = JSON.parse(fileContent);
+            if (rawEventData && rawEventData.tests) {
+                for (const k in rawEventData.tests) {
+                    const entry = rawEventData.tests[k];
+                    let errStack = '';
+                    let errName = '';
+                    let errMessage = '';
+                    let failed = false;
+                    if (entry && entry.err && entry.err.name != undefined) {
+                        errStack = entry.err.stack;
+                        errName = entry.err.name;
+                        errMessage = entry.err.message;
+                        failed = true;
+                    }
+                    const newMetric = new TestResultMetric(entry.title, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, 'macos', 'somelink');
+                    yield sendToFrog(newMetric);
+                    numOfMetrics++;
+                }
+            }
+        }
+        return numOfMetrics;
+    });
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const ms = core.getInput('milliseconds');
-            core.debug(`Waiting ${ms} milliseconds ...`); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-            core.debug(new Date().toTimeString());
-            yield wait_1.wait(parseInt(ms, 10));
-            core.debug(new Date().toTimeString());
-            core.setOutput('time', new Date().toTimeString());
+            const testReportFile = core.getInput('testReportFile');
+            const actionLink = core.getInput('actionLink');
+            const commitSha = github.context.ref;
+            const repo = github.context.repo;
+            const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink);
+            core.info(`Send ${numberOfMetrics} metrics`);
         }
         catch (error) {
             core.setFailed(error.message);
@@ -58,39 +210,10 @@ run();
 
 /***/ }),
 
-/***/ 817:
-/***/ (function(__unused_webpack_module, exports) {
-
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.wait = void 0;
-function wait(milliseconds) {
-    return __awaiter(this, void 0, void 0, function* () {
-        return new Promise(resolve => {
-            if (isNaN(milliseconds)) {
-                throw new Error('milliseconds not a number');
-            }
-            setTimeout(() => resolve('done!'), milliseconds);
-        });
-    });
-}
-exports.wait = wait;
-
-
-/***/ }),
-
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
@@ -176,6 +299,7 @@ function escapeProperty(s) {
 /***/ 186:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -420,6 +544,7 @@ exports.getState = getState;
 /***/ 717:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+"use strict";
 
 // For internal use, subject to change.
 var __importStar = (this && this.__importStar) || function (mod) {
@@ -455,6 +580,7 @@ exports.issueCommand = issueCommand;
 /***/ 278:
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -477,16 +603,50 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
+/***/ 716:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/github");
+
+
+/***/ }),
+
+/***/ 614:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("events");;
+
+/***/ }),
+
 /***/ 747:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("fs");;
+
+/***/ }),
+
+/***/ 605:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("http");;
+
+/***/ }),
+
+/***/ 211:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("https");;
 
 /***/ }),
 
 /***/ 87:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("os");;
 
 /***/ }),
@@ -494,7 +654,16 @@ module.exports = require("os");;
 /***/ 622:
 /***/ ((module) => {
 
+"use strict";
 module.exports = require("path");;
+
+/***/ }),
+
+/***/ 835:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("url");;
 
 /***/ })
 
