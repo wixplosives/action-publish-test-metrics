@@ -27,5 +27,5 @@ jobs:
         with:
           testReportFile: '__tests__/fixtures/mocha-report.json'
           actionLink: 'dummy/link'
-          matrix_os: ${{ matrix.os }}
-          matrix_node: ${{ matrix.node-version }}
+          os: ${{ matrix.os }}
+          node: ${{ matrix.node-version }}
