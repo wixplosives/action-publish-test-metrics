@@ -177,9 +177,11 @@ function sendToFrog(testMetric) {
         });
     });
 }
-function sendTestResults(filePath, repo, commitSha, actionLink) {
+function sendTestResults(filePath, repo, commitSha, actionLink, environment) {
     return __awaiter(this, void 0, void 0, function* () {
-        const fileContent = (yield fileExists(filePath)) ? yield fs_1.default.promises.readFile(filePath, 'utf8') : undefined;
+        const fileContent = (yield fileExists(filePath))
+            ? yield fs_1.default.promises.readFile(filePath, 'utf8')
+            : undefined;
         const testMetricList = [];
         let numOfMetrics = 0;
         if (fileContent) {
@@ -197,7 +199,7 @@ function sendTestResults(filePath, repo, commitSha, actionLink) {
                         errMessage = entry.err.message;
                         failed = true;
                     }
-                    const newMetric = new TestResultMetric(entry.title, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, 'undefined', actionLink);
+                    const newMetric = new TestResultMetric(entry.title, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, environment, actionLink);
                     yield sendToFrog(newMetric);
                     numOfMetrics++;
                 }
@@ -211,9 +213,12 @@ function run() {
         try {
             const testReportFile = core.getInput('testReportFile');
             const actionLink = core.getInput('actionLink');
+            const os = core.getInput('os');
+            const node = core.getInput('node');
             const commitSha = github.context.sha;
             const repo = `${github.context.repo.owner}/${github.context.repo.repo}`;
-            const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink);
+            const environment = `${os}/${node}`;
+            const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment);
             core.info(`Send ${numberOfMetrics} metrics`);
         }
         catch (error) {

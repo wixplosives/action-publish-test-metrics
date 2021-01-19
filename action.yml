@@ -11,6 +11,13 @@ inputs:
   actionLink: 
     required: true
     description: 'link toi action that executed the tests'
+  os: 
+    required: false
+    description: 'operation system on which test runs'
+  node: 
+    required: false
+    description: 'node version on which test runs'
+    
 runs:
   using: 'node12'
   main: 'dist/index.js'
