@@ -144,8 +144,7 @@ const http_1 = __webpack_require__(1270);
 const github = __webpack_require__(5438);
 class TestResultMetric {
     constructor(name, failed, currentRetry, errStack, errMessage, errName, duration, repo, commit, os, actionLink) {
-        const adjustedName = name.replace(' ', '-');
-        this.name = `${adjustedName}`;
+        this.name = `${name}`;
         this.failed = failed;
         this.currentRetry = currentRetry;
         this.errStack = errStack;

@@ -29,9 +29,7 @@ class TestResultMetric {
     os: string,
     actionLink: string
   ) {
-    const adjustedName = name.replace(' ', '-')
-    this.name = `${adjustedName}`
-
+    this.name = `${name}`
     this.failed = failed
     this.currentRetry = currentRetry
     this.errStack = errStack
