@@ -94,8 +94,8 @@ async function run(): Promise<void> {
   try {
     const testReportFile: string = core.getInput('testReportFile')
     const actionLink: string = core.getInput('actionLink')
-    const commitSha: string = github.context.ref
-    const repo: string = github.context.repo
+    const commitSha: string = github.context.sha
+    const repo: string = `${github.context.repo.owner}/${github.context.repo.repo}`
     const numberOfMetrics = await sendTestResults(testReportFile, repo, commitSha, actionLink)
     core.info(`Send ${numberOfMetrics} metrics`)
   }catch (error) {

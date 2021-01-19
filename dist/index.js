@@ -211,8 +211,8 @@ function run() {
         try {
             const testReportFile = core.getInput('testReportFile');
             const actionLink = core.getInput('actionLink');
-            const commitSha = github.context.ref;
-            const repo = github.context.repo;
+            const commitSha = github.context.sha;
+            const repo = `${github.context.repo.owner}/${github.context.repo.repo}`;
             const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink);
             core.info(`Send ${numberOfMetrics} metrics`);
         }
