@@ -86,7 +86,7 @@ async function sendTestResults(
           failed = true
         }
         const newMetric = new TestResultMetric(
-          entry.title,
+          `${entry.title}-${entry.fullTitle}`,
           failed,
           entry.currentRetry,
           errStack,

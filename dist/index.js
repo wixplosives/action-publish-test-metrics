@@ -198,7 +198,7 @@ function sendTestResults(filePath, repo, commitSha, actionLink, environment) {
                         errMessage = entry.err.message;
                         failed = true;
                     }
-                    const newMetric = new TestResultMetric(entry.title, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, environment, actionLink);
+                    const newMetric = new TestResultMetric(`${entry.title}-${entry.fullTitle}`, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, environment, actionLink);
                     yield sendToFrog(newMetric);
                     numOfMetrics++;
                 }
