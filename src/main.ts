@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import fs from 'fs'
 import {fetchText} from './http'
-const github = require('@actions/github')
+import * as github from '@actions/github'
 
 class TestResultMetric {
   name: string
@@ -50,10 +50,10 @@ async function fileExists(filePath: fs.PathLike): Promise<boolean> {
     return false
   }
 }
-async function sendToFrog(testMetric: TestResultMetric) {
+async function sendToFrog(testMetric: TestResultMetric): Promise<void> {
   const url = `http://frog.wix.com/c3ci?src=129&evid=1&actionLink=${testMetric.actionLink}&commit=${testMetric.commit}&currentRetry=${testMetric.currentRetry}&duration=${testMetric.duration}&errMessage=${testMetric.errMessage}&errName=${testMetric.errName}&errStack=${testMetric.errStack}&failed=${testMetric.failed}&os==${testMetric.os}&repo=${testMetric.repo}&testName=${testMetric.name}`
   const encodedUrl = encodeURI(url)
-  const result = await fetchText(encodedUrl, {
+  await fetchText(encodedUrl, {
     method: 'GET'
   })
 }
@@ -68,7 +68,6 @@ async function sendTestResults(
   const fileContent = (await fileExists(filePath))
     ? await fs.promises.readFile(filePath, 'utf8')
     : undefined
-  const testMetricList: TestResultMetric[] = []
   let numOfMetrics = 0
   if (fileContent) {
     const rawEventData = JSON.parse(fileContent)
@@ -79,7 +78,7 @@ async function sendTestResults(
         let errName = ''
         let errMessage = ''
         let failed = false
-        if (entry && entry.err && entry.err.name != undefined) {
+        if (entry && entry.err && entry.err.name) {
           errStack = entry.err.stack
           errName = entry.err.name
           errMessage = entry.err.message
@@ -114,8 +113,8 @@ async function run(): Promise<void> {
     const node: string = core.getInput('node')
 
     const commitSha: string = github.context.sha
-    const repo: string = `${github.context.repo.owner}/${github.context.repo.repo}`
-    const environment: string = `${os}/${node}`
+    const repo = `${github.context.repo.owner}/${github.context.repo.repo}`
+    const environment = `${os}/${node}`
     const numberOfMetrics = await sendTestResults(
       testReportFile,
       repo,
@@ -125,7 +124,7 @@ async function run(): Promise<void> {
     )
     core.info(`Send ${numberOfMetrics} metrics`)
   } catch (error) {
-    core.setFailed(error.message)
+    core.info(`Failed sending metrics.Error: ${error}`)
   }
 }
 
