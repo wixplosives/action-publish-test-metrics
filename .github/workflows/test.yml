@@ -29,3 +29,9 @@ jobs:
           actionLink: 'dummy/link'
           os: ${{ matrix.os }}
           node: ${{ matrix.node-version }}
+      - uses: ./
+        with:
+          testReportFile: '__tests__/fixtures/mocha-report-multiple.json'
+          actionLink: 'dummy/link'
+          os: ${{ matrix.os }}
+          node: ${{ matrix.node-version }}

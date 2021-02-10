@@ -84,6 +84,12 @@ async function sendTestResults(
           errMessage = entry.err.message
           failed = true
         }
+        if (entry && entry.err && entry.err.multiple) {
+          errStack = entry.err.stack
+          errName = entry.err.multiple[0].name
+          errMessage = entry.err.message
+          failed = true
+        }
         const newMetric = new TestResultMetric(
           `${entry.title}-${entry.fullTitle}`,
           failed,

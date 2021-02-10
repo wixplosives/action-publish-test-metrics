@@ -1,0 +1,454 @@
+{
+  "stats": {
+    "suites": 13,
+    "tests": 27,
+    "passes": 25,
+    "pending": 1,
+    "failures": 1,
+    "start": "2021-02-10T07:49:18.889Z",
+    "end": "2021-02-10T07:49:22.386Z",
+    "duration": 3497
+  },
+  "tests": [
+    {
+      "title": "peoperly re-mapping urls in css files (at rules and declarations)",
+      "fullTitle": "assets url-re-mapping peoperly re-mapping urls in css files (at rules and declarations)",
+      "duration": 7,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "retrieves the scripts object as a series of initialization steps",
+      "fullTitle": "getScripts retrieves the scripts object as a series of initialization steps",
+      "duration": 2,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "handles an empty scripts object",
+      "fullTitle": "getScripts handles an empty scripts object",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "loads a whole dir with sub directories from fs",
+      "fullTitle": "readFolderSync loads a whole dir with sub directories from fs",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "creates processing config for a given directory contents",
+      "fullTitle": "Config files generation creates processing config for a given directory contents",
+      "duration": 81,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "returns directory contents given a path",
+      "fullTitle": "Get directory contents returns directory contents given a path",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "ignores files if pattern provided",
+      "fullTitle": "Get directory contents ignores files if pattern provided",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "GitCommandsService allows to run multiple commands independently and in parallel",
+      "fullTitle": "Git commands GitCommandsService allows to run multiple commands independently and in parallel",
+      "duration": 37,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "return the status files map with absolute paths",
+      "fullTitle": "utils statusResultToFilesMap return the status files map with absolute paths",
+      "duration": 3,
+      "currentRetry": 0,
+      "err": {
+        "message": "expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+        "showDiff": true,
+        "actual": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": true\n  }\n}",
+        "expected": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": false\n  }\n}",
+        "operator": "deepStrictEqual",
+        "stack": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }\n    at Context.<anonymous> (packages/git-revisions/test/utils.unit.ts:38:31)\n    at processImmediate (internal/timers.js:461:21)",
+        "multiple": [
+          {
+            "name": "AssertionError",
+            "message": "expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "showDiff": true,
+            "actual": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": true\n  }\n}",
+            "expected": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": false\n  }\n}",
+            "operator": "deepStrictEqual",
+            "multiple": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) },AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "stack": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }\n    at Context.<anonymous> (packages/git-revisions/test/utils.unit.ts:38:31)\n    at processImmediate (internal/timers.js:461:21)"
+          },
+          {
+            "name": "AssertionError",
+            "message": "expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "showDiff": true,
+            "actual": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": true\n  }\n}",
+            "expected": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": false\n  }\n}",
+            "operator": "deepStrictEqual",
+            "multiple": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) },AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "stack": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }\n    at Context.<anonymous> (packages/git-revisions/test/utils.unit.ts:38:31)\n    at processImmediate (internal/timers.js:461:21)"
+          }
+        ]
+      }
+    },
+    {
+      "title": "should allow registering job runners, and fetching job runners",
+      "fullTitle": "job-manager should allow registering job runners, and fetching job runners",
+      "duration": 325,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should throw when trying to register multiple definitions with the same type",
+      "fullTitle": "job-manager should throw when trying to register multiple definitions with the same type",
+      "duration": 74,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "retrieves version of a package when it is installed",
+      "fullTitle": "Packages manager retrieves version of a package when it is installed",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "retrieves version of a package when it is installed as a dev dependency",
+      "fullTitle": "Packages manager retrieves version of a package when it is installed as a dev dependency",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "installs package if not included in user dependencies",
+      "fullTitle": "Packages manager installs package if not included in user dependencies",
+      "duration": 1293,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "gets notified when package is installed",
+      "fullTitle": "Packages manager gets notified when package is installed",
+      "duration": 1257,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "transforms a relative url to an absolute one",
+      "fullTitle": "relative url resolver transforms a relative url to an absolute one",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "transforms multiple urls to their absolute paths",
+      "fullTitle": "relative url resolver transforms multiple urls to their absolute paths",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "supports sass syntax",
+      "fullTitle": "relative url resolver supports sass syntax",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "ignores urls in comments",
+      "fullTitle": "relative url resolver ignores urls in comments",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should not be initializable in worker mode",
+      "fullTitle": "static-server should not be initializable in worker mode",
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should return static server in live server",
+      "fullTitle": "static-server should return static server in live server",
+      "duration": 135,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should kill the server on feature dispose",
+      "fullTitle": "static-server should kill the server on feature dispose",
+      "duration": 85,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should properly serve binary asserts",
+      "fullTitle": "static-server should properly serve binary asserts",
+      "duration": 81,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should creates selectors that targets every interactive (hover, focus) native pseudo elements via attribute selector",
+      "fullTitle": "force-native-states-transformer should creates selectors that targets every interactive (hover, focus) native pseudo elements via attribute selector",
+      "duration": 2,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should handle selectors with multiple native states",
+      "fullTitle": "force-native-states-transformer should handle selectors with multiple native states",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should handle multiple selectors",
+      "fullTitle": "force-native-states-transformer should handle multiple selectors",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should create a selectors that target nested interactive native pseudo classes via attribute selector",
+      "fullTitle": "force-native-states-transformer should create a selectors that target nested interactive native pseudo classes via attribute selector",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "pending": [
+    {
+      "title": "should not be initializable in worker mode",
+      "fullTitle": "static-server should not be initializable in worker mode",
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "failures": [
+    {
+      "title": "return the status files map with absolute paths",
+      "fullTitle": "utils statusResultToFilesMap return the status files map with absolute paths",
+      "duration": 3,
+      "currentRetry": 0,
+      "err": {
+        "message": "expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+        "showDiff": true,
+        "actual": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": true\n  }\n}",
+        "expected": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": false\n  }\n}",
+        "operator": "deepStrictEqual",
+        "stack": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }\n    at Context.<anonymous> (packages/git-revisions/test/utils.unit.ts:38:31)\n    at processImmediate (internal/timers.js:461:21)",
+        "multiple": [
+          {
+            "name": "AssertionError",
+            "message": "expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "showDiff": true,
+            "actual": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": true\n  }\n}",
+            "expected": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": false\n  }\n}",
+            "operator": "deepStrictEqual",
+            "multiple": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) },AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "stack": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }\n    at Context.<anonymous> (packages/git-revisions/test/utils.unit.ts:38:31)\n    at processImmediate (internal/timers.js:461:21)"
+          },
+          {
+            "name": "AssertionError",
+            "message": "expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "showDiff": true,
+            "actual": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": true\n  }\n}",
+            "expected": "{\n  \"/conflicted.txt\": {\n    \"modificationStatus\": \"Conflicted\"\n    \"tracked\": true\n  }\n  \"/created.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": true\n  }\n  \"/created_not_added.txt\": {\n    \"modificationStatus\": \"Added\"\n    \"tracked\": false\n  }\n  \"/deleted.txt\": {\n    \"modificationStatus\": \"Deleted\"\n    \"tracked\": true\n  }\n  \"/modified.txt\": {\n    \"modificationStatus\": \"Modified\"\n    \"tracked\": true\n  }\n  \"/renamed-to.txt\": {\n    \"from\": \"/renamed-from.txt\"\n    \"modificationStatus\": \"Renamed\"\n    \"tracked\": false\n  }\n}",
+            "operator": "deepStrictEqual",
+            "multiple": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) },AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }",
+            "stack": "AssertionError: expected { Object (/created.txt, /created_not_added.txt, ...) } to deeply equal { Object (/created.txt, /created_not_added.txt, ...) }\n    at Context.<anonymous> (packages/git-revisions/test/utils.unit.ts:38:31)\n    at processImmediate (internal/timers.js:461:21)"
+          }
+        ]
+      }
+    }
+  ],
+  "passes": [
+    {
+      "title": "peoperly re-mapping urls in css files (at rules and declarations)",
+      "fullTitle": "assets url-re-mapping peoperly re-mapping urls in css files (at rules and declarations)",
+      "duration": 7,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "retrieves the scripts object as a series of initialization steps",
+      "fullTitle": "getScripts retrieves the scripts object as a series of initialization steps",
+      "duration": 2,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "handles an empty scripts object",
+      "fullTitle": "getScripts handles an empty scripts object",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "loads a whole dir with sub directories from fs",
+      "fullTitle": "readFolderSync loads a whole dir with sub directories from fs",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "creates processing config for a given directory contents",
+      "fullTitle": "Config files generation creates processing config for a given directory contents",
+      "duration": 81,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "returns directory contents given a path",
+      "fullTitle": "Get directory contents returns directory contents given a path",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "ignores files if pattern provided",
+      "fullTitle": "Get directory contents ignores files if pattern provided",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "GitCommandsService allows to run multiple commands independently and in parallel",
+      "fullTitle": "Git commands GitCommandsService allows to run multiple commands independently and in parallel",
+      "duration": 37,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should allow registering job runners, and fetching job runners",
+      "fullTitle": "job-manager should allow registering job runners, and fetching job runners",
+      "duration": 325,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should throw when trying to register multiple definitions with the same type",
+      "fullTitle": "job-manager should throw when trying to register multiple definitions with the same type",
+      "duration": 74,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "retrieves version of a package when it is installed",
+      "fullTitle": "Packages manager retrieves version of a package when it is installed",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "retrieves version of a package when it is installed as a dev dependency",
+      "fullTitle": "Packages manager retrieves version of a package when it is installed as a dev dependency",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "installs package if not included in user dependencies",
+      "fullTitle": "Packages manager installs package if not included in user dependencies",
+      "duration": 1293,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "gets notified when package is installed",
+      "fullTitle": "Packages manager gets notified when package is installed",
+      "duration": 1257,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "transforms a relative url to an absolute one",
+      "fullTitle": "relative url resolver transforms a relative url to an absolute one",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "transforms multiple urls to their absolute paths",
+      "fullTitle": "relative url resolver transforms multiple urls to their absolute paths",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "supports sass syntax",
+      "fullTitle": "relative url resolver supports sass syntax",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "ignores urls in comments",
+      "fullTitle": "relative url resolver ignores urls in comments",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should return static server in live server",
+      "fullTitle": "static-server should return static server in live server",
+      "duration": 135,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should kill the server on feature dispose",
+      "fullTitle": "static-server should kill the server on feature dispose",
+      "duration": 85,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should properly serve binary asserts",
+      "fullTitle": "static-server should properly serve binary asserts",
+      "duration": 81,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should creates selectors that targets every interactive (hover, focus) native pseudo elements via attribute selector",
+      "fullTitle": "force-native-states-transformer should creates selectors that targets every interactive (hover, focus) native pseudo elements via attribute selector",
+      "duration": 2,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should handle selectors with multiple native states",
+      "fullTitle": "force-native-states-transformer should handle selectors with multiple native states",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should handle multiple selectors",
+      "fullTitle": "force-native-states-transformer should handle multiple selectors",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "should create a selectors that target nested interactive native pseudo classes via attribute selector",
+      "fullTitle": "force-native-states-transformer should create a selectors that target nested interactive native pseudo classes via attribute selector",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ]
+}
