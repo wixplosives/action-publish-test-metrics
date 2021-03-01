@@ -29,7 +29,7 @@ class TestResultMetric {
     os: string,
     actionLink: string
   ) {
-    this.name = `${name}`
+    this.name = name
     this.failed = failed
     this.currentRetry = currentRetry
     this.errStack = errStack
@@ -91,7 +91,7 @@ async function sendTestResults(
           failed = true
         }
         const newMetric = new TestResultMetric(
-          `${entry.title}-${entry.fullTitle}`,
+          entry.fullTitle,
           failed,
           entry.currentRetry,
           errStack,
