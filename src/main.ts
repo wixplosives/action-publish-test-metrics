@@ -54,7 +54,7 @@ async function fileExists(filePath: fs.PathLike): Promise<boolean> {
   }
 }
 async function sendToFrog(testMetric: TestResultMetric): Promise<void> {
-  const url = `http://frog.wix.com/c3ci?src=129&evid=1&actionLink=${testMetric.actionLink}&commit=${testMetric.commit}&currentRetry=${testMetric.currentRetry}&duration=${testMetric.duration}&errMessage=${testMetric.errMessage}&errName=${testMetric.errName}&errStack=${testMetric.errStack}&failed=${testMetric.failed}&os==${testMetric.os}&repo=${testMetric.repo}&testName=${testMetric.name}`
+  const url = `http://frog.wix.com/c3ci?src=129&evid=1&actionLink=${testMetric.actionLink}&commit=${testMetric.commit}&currentRetry=${testMetric.currentRetry}&duration=${testMetric.duration}&errMessage=${testMetric.errMessage}&errName=${testMetric.errName}&errStack=${testMetric.errStack}&failed=${testMetric.failed}&os==${testMetric.os}&repo=${testMetric.repo}&testName=${testMetric.name}&branch=${testMetric.branch}`
   const encodedUrl = encodeURI(url)
   await fetchText(encodedUrl, {
     method: 'GET'

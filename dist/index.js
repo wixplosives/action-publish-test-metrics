@@ -128,7 +128,7 @@ function fileExists(filePath) {
 }
 function sendToFrog(testMetric) {
     return __awaiter(this, void 0, void 0, function* () {
-        const url = `http://frog.wix.com/c3ci?src=129&evid=1&actionLink=${testMetric.actionLink}&commit=${testMetric.commit}&currentRetry=${testMetric.currentRetry}&duration=${testMetric.duration}&errMessage=${testMetric.errMessage}&errName=${testMetric.errName}&errStack=${testMetric.errStack}&failed=${testMetric.failed}&os==${testMetric.os}&repo=${testMetric.repo}&testName=${testMetric.name}`;
+        const url = `http://frog.wix.com/c3ci?src=129&evid=1&actionLink=${testMetric.actionLink}&commit=${testMetric.commit}&currentRetry=${testMetric.currentRetry}&duration=${testMetric.duration}&errMessage=${testMetric.errMessage}&errName=${testMetric.errName}&errStack=${testMetric.errStack}&failed=${testMetric.failed}&os==${testMetric.os}&repo=${testMetric.repo}&testName=${testMetric.name}&branch=${testMetric.branch}`;
         const encodedUrl = encodeURI(url);
         yield http_1.fetchText(encodedUrl, {
             method: 'GET'
