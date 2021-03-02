@@ -15,6 +15,7 @@ class TestResultMetric {
   commit: string
   os: string
   actionLink: string
+  branch: string
 
   constructor(
     name: string,
@@ -27,7 +28,8 @@ class TestResultMetric {
     repo: string,
     commit: string,
     os: string,
-    actionLink: string
+    actionLink: string,
+    branch: string
   ) {
     this.name = name
     this.failed = failed
@@ -40,6 +42,7 @@ class TestResultMetric {
     this.commit = commit
     this.os = os
     this.actionLink = actionLink
+    this.branch = branch
   }
 }
 
@@ -63,7 +66,8 @@ async function sendTestResults(
   repo: string,
   commitSha: string,
   actionLink: string,
-  environment: string
+  environment: string,
+  branch: string
 ): Promise<number> {
   const fileContent = (await fileExists(filePath))
     ? await fs.promises.readFile(filePath, 'utf8')
@@ -101,7 +105,8 @@ async function sendTestResults(
           repo,
           commitSha,
           environment,
-          actionLink
+          actionLink,
+          branch
         )
         await sendToFrog(newMetric)
         numOfMetrics++
@@ -117,7 +122,7 @@ async function run(): Promise<void> {
     const actionLink: string = core.getInput('actionLink')
     const os: string = core.getInput('os')
     const node: string = core.getInput('node')
-
+    const branch: string = github.context.ref
     const commitSha: string = github.context.sha
     const repo = `${github.context.repo.owner}/${github.context.repo.repo}`
     const environment = `${os}/${node}`
@@ -126,7 +131,8 @@ async function run(): Promise<void> {
       repo,
       commitSha,
       actionLink,
-      environment
+      environment,
+      branch
     )
     core.info(`Send ${numberOfMetrics} metrics`)
   } catch (error) {

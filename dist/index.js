@@ -101,8 +101,8 @@ const fs_1 = __importDefault(__webpack_require__(747));
 const http_1 = __webpack_require__(270);
 const github = __importStar(__webpack_require__(438));
 class TestResultMetric {
-    constructor(name, failed, currentRetry, errStack, errMessage, errName, duration, repo, commit, os, actionLink) {
-        this.name = `${name}`;
+    constructor(name, failed, currentRetry, errStack, errMessage, errName, duration, repo, commit, os, actionLink, branch) {
+        this.name = name;
         this.failed = failed;
         this.currentRetry = currentRetry;
         this.errStack = errStack;
@@ -113,6 +113,7 @@ class TestResultMetric {
         this.commit = commit;
         this.os = os;
         this.actionLink = actionLink;
+        this.branch = branch;
     }
 }
 function fileExists(filePath) {
@@ -134,7 +135,7 @@ function sendToFrog(testMetric) {
         });
     });
 }
-function sendTestResults(filePath, repo, commitSha, actionLink, environment) {
+function sendTestResults(filePath, repo, commitSha, actionLink, environment, branch) {
     return __awaiter(this, void 0, void 0, function* () {
         const fileContent = (yield fileExists(filePath))
             ? yield fs_1.default.promises.readFile(filePath, 'utf8')
@@ -161,7 +162,7 @@ function sendTestResults(filePath, repo, commitSha, actionLink, environment) {
                         errMessage = entry.err.message;
                         failed = true;
                     }
-                    const newMetric = new TestResultMetric(`${entry.title}-${entry.fullTitle}`, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, environment, actionLink);
+                    const newMetric = new TestResultMetric(entry.fullTitle, failed, entry.currentRetry, errStack, errMessage, errName, entry.duration, repo, commitSha, environment, actionLink, branch);
                     yield sendToFrog(newMetric);
                     numOfMetrics++;
                 }
@@ -177,10 +178,11 @@ function run() {
             const actionLink = core.getInput('actionLink');
             const os = core.getInput('os');
             const node = core.getInput('node');
+            const branch = github.context.ref;
             const commitSha = github.context.sha;
             const repo = `${github.context.repo.owner}/${github.context.repo.repo}`;
             const environment = `${os}/${node}`;
-            const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment);
+            const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment, branch);
             core.info(`Send ${numberOfMetrics} metrics`);
         }
         catch (error) {
