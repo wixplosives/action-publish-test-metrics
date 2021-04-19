@@ -1,12 +1,5 @@
 name: 'build-test'
-on: # rebuild any PRs and main branch changes
-  pull_request:
-  push:
-    branches:
-      - main
-      - alexs/multiplefiles
-      - 'releases/*'
-
+on: [pull_request,push ]
 jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
@@ -28,8 +21,7 @@ jobs:
         with:
           testReportFile: '__tests__/fixtures/mocha-report.json'
           actionLink: 'dummy/link'
-          os: ${{ matrix.os }}
-          node: ${{ matrix.node-version }}
+          os: test          
       - uses: ./
         with:
           testReportFile: '__tests__/fixtures/mocha-report-multiple.json'
@@ -43,3 +35,4 @@ jobs:
           os: ${{ matrix.os }}
           node: ${{ matrix.node-version }}
       
+
