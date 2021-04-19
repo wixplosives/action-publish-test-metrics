@@ -173,15 +173,19 @@ function sendTestResults(filePath, repo, commitSha, actionLink, environment) {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const testReportFile = core.getInput('testReportFile');
+            const testReportFiles = core.getInput('testReportFile');
             const actionLink = core.getInput('actionLink');
             const os = core.getInput('os');
             const node = core.getInput('node');
             const commitSha = github.context.sha;
             const repo = `${github.context.repo.owner}/${github.context.repo.repo}`;
             const environment = `${os}/${node}`;
-            const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment);
-            core.info(`Send ${numberOfMetrics} metrics`);
+            const files = testReportFiles.split(',');
+            for (const testReportFile of files) {
+                core.info(`Processing  ${testReportFile}`);
+                const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment);
+                core.info(`Send ${numberOfMetrics} metrics`);
+            }
         }
         catch (error) {
             core.info(`Failed sending metrics.Error: ${error}`);
