@@ -134,7 +134,8 @@ async function run(): Promise<void> {
         repo,
         commitSha,
         actionLink,
-        environment
+        environment,
+        branch
       )
       core.info(`Send ${numberOfMetrics} metrics`)
     }

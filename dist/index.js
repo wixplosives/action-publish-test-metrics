@@ -185,7 +185,7 @@ function run() {
             const files = testReportFiles.split(',');
             for (const testReportFile of files) {
                 core.info(`Processing  ${testReportFile}`);
-                const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment);
+                const numberOfMetrics = yield sendTestResults(testReportFile, repo, commitSha, actionLink, environment, branch);
                 core.info(`Send ${numberOfMetrics} metrics`);
             }
         }
