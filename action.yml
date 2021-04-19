@@ -5,7 +5,7 @@ branding:
   icon: 'crosshair'
   color: 'blue'
 inputs:
-  testReportFiles: 
+  testReportFile: 
     required: true
     description: 'input file in json format. mocha json repoter results, delimited by coma'
   actionLink: 

@@ -113,7 +113,7 @@ async function sendTestResults(
 
 async function run(): Promise<void> {
   try {
-    const testReportFiles: string = core.getInput('testReportFiles')
+    const testReportFiles: string = core.getInput('testReportFile')
     const actionLink: string = core.getInput('actionLink')
     const os: string = core.getInput('os')
     const node: string = core.getInput('node')
