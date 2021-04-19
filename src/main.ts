@@ -113,7 +113,7 @@ async function sendTestResults(
 
 async function run(): Promise<void> {
   try {
-    const testReportFile: string = core.getInput('testReportFile')
+    const testReportFiles: string = core.getInput('testReportFiles')
     const actionLink: string = core.getInput('actionLink')
     const os: string = core.getInput('os')
     const node: string = core.getInput('node')
@@ -121,14 +121,18 @@ async function run(): Promise<void> {
     const commitSha: string = github.context.sha
     const repo = `${github.context.repo.owner}/${github.context.repo.repo}`
     const environment = `${os}/${node}`
-    const numberOfMetrics = await sendTestResults(
-      testReportFile,
-      repo,
-      commitSha,
-      actionLink,
-      environment
-    )
-    core.info(`Send ${numberOfMetrics} metrics`)
+    const files = testReportFiles.split(',')
+    for (const testReportFile of files) {
+      core.info(`Processing  ${testReportFile}`)
+      const numberOfMetrics = await sendTestResults(
+        testReportFile,
+        repo,
+        commitSha,
+        actionLink,
+        environment
+      )
+      core.info(`Send ${numberOfMetrics} metrics`)
+    }
   } catch (error) {
     core.info(`Failed sending metrics.Error: ${error}`)
   }
