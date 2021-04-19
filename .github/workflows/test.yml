@@ -1,6 +1,5 @@
 name: 'build-test'
 on: [pull_request,push ]
-
 jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
@@ -27,5 +26,13 @@ jobs:
         with:
           testReportFile: '__tests__/fixtures/mocha-report-multiple.json'
           actionLink: 'dummy/link'
-          os: test
-          
+          os: ${{ matrix.os }}
+          node: ${{ matrix.node-version }}
+      - uses: ./
+        with:
+          testReportFile: '__tests__/fixtures/mocha-report-multiple.json,__tests__/fixtures/mocha-report.json'
+          actionLink: 'dummy/link'
+          os: ${{ matrix.os }}
+          node: ${{ matrix.node-version }}
+      
+

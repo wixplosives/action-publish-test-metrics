@@ -7,7 +7,7 @@ branding:
 inputs:
   testReportFile: 
     required: true
-    description: 'input file in json format. mocha json repoter results'
+    description: 'input file in json format. mocha json repoter results, delimited by coma'
   actionLink: 
     required: true
     description: 'link toi action that executed the tests'
