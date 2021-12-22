@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import fs from 'fs'
-import {fetchText} from './http'
+import { fetchText } from './http'
 import * as github from '@actions/github'
 
 class TestResultMetric {
@@ -128,7 +128,7 @@ async function run(): Promise<void> {
     const environment = `${os}/${node}`
     const files = testReportFiles.split(',')
     for (const testReportFile of files) {
-      core.info(`Processing  ${testReportFile}`)
+      core.info(`Processing ${testReportFile}`)
       const numberOfMetrics = await sendTestResults(
         testReportFile,
         repo,
@@ -139,7 +139,6 @@ async function run(): Promise<void> {
       )
       core.info(`Send ${numberOfMetrics} metrics`)
     }
-
   } catch (error) {
     core.info(`Failed sending metrics.Error: ${error}`)
   }
