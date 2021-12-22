@@ -139,7 +139,6 @@ async function run(): Promise<void> {
       )
       core.info(`Send ${numberOfMetrics} metrics`)
     }
-
   } catch (error) {
     core.info(`Failed sending metrics.Error: ${error}`)
   }
