@@ -8,7 +8,7 @@ npm install
 
 ## Build
 ```
-npm run build && npm run packag
+npm run build && npm run package
 ```
 ## Use
 ```
