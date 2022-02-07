@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
-import fs from 'fs'
-import {fetchText} from './http'
 import * as github from '@actions/github'
+import {fetchText} from './http'
+import fs from 'fs'
 
 class TestResultMetric {
   name: string
@@ -139,7 +139,6 @@ async function run(): Promise<void> {
       )
       core.info(`Send ${numberOfMetrics} metrics`)
     }
-
   } catch (error) {
     core.info(`Failed sending metrics.Error: ${error}`)
   }
