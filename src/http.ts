@@ -1,7 +1,7 @@
+import {URL} from 'url'
 import http from 'http'
 import https from 'https'
 import {once} from 'events'
-import {URL} from 'url'
 
 export async function fetchText(
   url: string | URL,
