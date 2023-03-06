@@ -40,7 +40,7 @@
     "glob-parent": "^6.0.2",
     "hosted-git-info": "^4.1.0",
     "jest": "^27.5.0",
-    "jest-circus": "^27.5.0",
+    "jest-circus": "^29.5.0",
     "js-yaml": "^4.1.0",
     "node-notifier": "^10.0.1",
     "path-parse": "^1.0.7",
